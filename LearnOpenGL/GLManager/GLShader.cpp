@@ -22,6 +22,16 @@ GLShader::GLShader(const char * shaderStr, GLShaderType type)
     glShaderSource(m_shaderId, 1, &shaderStr, NULL);
     glCompileShader(m_shaderId);
     
+    GLint length = 0;
+    glGetShaderiv(m_shaderId, GL_INFO_LOG_LENGTH, &length);
+    if(length)
+    {
+        char* log = (char*)malloc(length);
+        glGetShaderInfoLog(m_shaderId, length, NULL, log);
+        printf(" %s", log);
+        free(log);
+    }
+    
 }
 
 GLShader::~GLShader()
@@ -29,5 +39,7 @@ GLShader::~GLShader()
     if(m_shaderId != 0)
     {
         glDeleteShader(m_shaderId);
+        m_shaderId = 0;
     }
 }
+

@@ -32,7 +32,28 @@ private:
 class GLProgram : public std::enable_shared_from_this<GLProgram>
 {
 public:
+    GLProgram(const char * vertexShaderStr, const char * fragmentShaderStr);
+    ~GLProgram();
     
+    void useProgram();
+    
+private:
+    unsigned int m_program;
 };
+
+class GLVAO : public std::enable_shared_from_this<GLVAO>
+{
+public:
+    GLVAO();
+    ~GLVAO();
+    
+    void addVertex3D(float* data, int vertexCount, int layout);
+    
+    void bindVAO();
+private:
+    unsigned int m_vaoId = 0;
+};
+
+
 
 #endif /* ShaderDelegate_hpp */
