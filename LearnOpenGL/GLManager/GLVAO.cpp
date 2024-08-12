@@ -39,6 +39,26 @@ void GLVAO::addVertex3D(float* data, int vertexCount, int layout)
 }
 
 
+void GLVAO::addVertex3Dx(float* vertexData, int vertexSize, unsigned int *posData, int posSize, int layout)
+{
+    glBindVertexArray(m_vaoId);
+    GLuint vbo = 0;
+    glGenBuffers(1, &vbo);
+    glBindBuffer(GL_ARRAY_BUFFER, vbo);
+    glBufferData(GL_ARRAY_BUFFER, vertexSize, vertexData, GL_STATIC_DRAW);
+    
+    GLuint ebo = 0;
+    glGenBuffers(1, &ebo);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebo);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, posSize, posData, GL_STATIC_DRAW);
+    
+    glVertexAttribPointer(layout, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (GLvoid*)0);
+
+    glEnableVertexAttribArray(layout);
+
+    glBindVertexArray(0);
+}
+
 void GLVAO::bindVAO()
 {
     glBindVertexArray(m_vaoId);

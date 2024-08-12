@@ -65,15 +65,31 @@ int main(int argc, const char * argv[]) {
     
     std::shared_ptr<GLProgram> program = std::make_shared<GLProgram>(vertexShaderSource, fragmentShaderSource);
     
-    float vertices[] = {
-        -0.5f, -0.5f, 0.0f,
-         0.5f, -0.5f, 0.0f,
-         0.0f,  0.5f, 0.0f
-    };
+    /**** 三角形  ****/
+//    float vertices[] = {
+//        -0.5f, -0.5f, 0.0f,
+//         0.5f, -0.5f, 0.0f,
+//         0.0f,  0.5f, 0.0f
+//    };
+//    
+//    std::shared_ptr<GLVAO> vao = std::make_shared<GLVAO>();
+//    vao->addVertex3D(vertices, 3, 0);
     
-    std::shared_ptr<GLVAO> vao = std::make_shared<GLVAO>();
-    vao->addVertex3D(vertices, 3, 0);
+    /**** 正方形  ****/
+    float vertices[] = {
+         0.5f,  0.5f, 0.0f,  // top right
+         0.5f, -0.5f, 0.0f,  // bottom right
+        -0.5f, -0.5f, 0.0f,  // bottom left
+        -0.5f,  0.5f, 0.0f   // top left
+    };
+    unsigned int indices[] = {  // note that we start from 0!
+        0, 1, 3,  // first Triangle
+        1, 2, 3   // second Triangle
+    };
 
+    std::shared_ptr<GLVAO> vao = std::make_shared<GLVAO>();
+    vao->addVertex3Dx(vertices, sizeof(vertices), indices, sizeof(indices), 0);
+    
     // render loop
     // -----------
     while (!glfwWindowShouldClose(window))
@@ -89,7 +105,8 @@ int main(int argc, const char * argv[]) {
         
         program->useProgram();
         vao->bindVAO();
-        glDrawArrays(GL_TRIANGLES, 0, 3);
+        //glDrawArrays(GL_TRIANGLES, 0, 3);
+        glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 
         // glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
         // -------------------------------------------------------------------------------

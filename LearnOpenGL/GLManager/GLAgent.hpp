@@ -49,6 +49,8 @@ public:
     
     void addVertex3D(float* data, int vertexCount, int layout);
     
+    void addVertex3Dx(float* vertexData, int vertexSize, unsigned int *posData, int posSize, int layout);
+    
     void bindVAO();
 private:
     unsigned int m_vaoId = 0;
