@@ -32,3 +32,10 @@ void GLProgram::useProgram()
 {
     glUseProgram(m_program);
 }
+
+void GLProgram::updaeUniformColor(float color)
+{
+    // 更新uniform颜色
+    int vertexColorLocation = glGetUniformLocation(m_program, "ourColor");
+    glUniform4f(vertexColorLocation, 0.0f, color, 0.0f, 1.0f);
+}
