@@ -21,7 +21,7 @@ void processInput(GLFWwindow *window);
 const unsigned int SCR_WIDTH = 800;
 const unsigned int SCR_HEIGHT = 600;
 
-int main(int argc, const char * argv[]) {
+int main11(int argc, const char * argv[]) {
     std::cout << "Hello, World!\n";
     glfwInit();
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
@@ -109,8 +109,10 @@ int main(int argc, const char * argv[]) {
         
         program->useProgram();
         float timeValue = glfwGetTime();
-        float greenValue = sin(timeValue) / 2.0f + 0.5f;
-        program->updaeUniformColor(greenValue);
+        float rColor = sin(timeValue) / 2.0f + 0.5f;
+        float gColor = cos(timeValue) / 2.0f + 0.5f;
+        float bColor = tan(timeValue) / 2.0f + 0.5f;
+        program->updaeUniformColor(rColor, gColor, bColor);
         
         vao->bindVAO();
         glDrawArrays(GL_TRIANGLES, 0, 3);

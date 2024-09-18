@@ -37,7 +37,7 @@ public:
     
     void useProgram();
     
-    void updaeUniformColor(float color);
+    void updaeUniformColor(float rColor = 0, float gColor = 0, float bColor = 0);
     
 private:
     unsigned int m_program;
