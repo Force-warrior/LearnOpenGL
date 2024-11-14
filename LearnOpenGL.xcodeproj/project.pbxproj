@@ -11,9 +11,10 @@
 		331F3DF02C606C5900635837 /* libglfw.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 331F3DEF2C606C5900635837 /* libglfw.3.dylib */; };
 		331F3DF22C606C8100635837 /* glad.c in Sources */ = {isa = PBXBuildFile; fileRef = 331F3DF12C606C8100635837 /* glad.c */; };
 		331F3DF62C60A10B00635837 /* GLShader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 331F3DF42C60A10B00635837 /* GLShader.cpp */; };
-		331F3E012C6AF71300635837 /* texture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 331F3DFF2C6AF71300635837 /* texture.cpp */; };
 		3365ED402C66E369005A6309 /* GLProgram.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3365ED3E2C66E369005A6309 /* GLProgram.cpp */; };
 		3365ED412C66E369005A6309 /* GLVAO.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3365ED3F2C66E369005A6309 /* GLVAO.cpp */; };
+		33FD15AE2CE58C4E00E91597 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 33FD15AC2CE58C4E00E91597 /* main.cpp */; };
+		33FD15B22CE590D900E91597 /* Application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 33FD15B02CE590D900E91597 /* Application.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -35,10 +36,12 @@
 		331F3DF12C606C8100635837 /* glad.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = glad.c; path = third_party/glad/src/glad.c; sourceTree = SOURCE_ROOT; };
 		331F3DF42C60A10B00635837 /* GLShader.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = GLShader.cpp; sourceTree = "<group>"; };
 		331F3DF52C60A10B00635837 /* GLAgent.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = GLAgent.hpp; sourceTree = "<group>"; };
-		331F3DFF2C6AF71300635837 /* texture.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = texture.cpp; sourceTree = "<group>"; };
 		3365ED3C2C66E300005A6309 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
 		3365ED3E2C66E369005A6309 /* GLProgram.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GLProgram.cpp; sourceTree = "<group>"; };
 		3365ED3F2C66E369005A6309 /* GLVAO.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GLVAO.cpp; sourceTree = "<group>"; };
+		33FD15AC2CE58C4E00E91597 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = SOURCE_ROOT; };
+		33FD15B02CE590D900E91597 /* Application.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Application.cpp; sourceTree = "<group>"; };
+		33FD15B12CE590D900E91597 /* Application.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Application.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,10 +76,11 @@
 		331F3DE62C6068F500635837 /* LearnOpenGL */ = {
 			isa = PBXGroup;
 			children = (
+				33FD15AF2CE590C300E91597 /* Application */,
 				331F3DF32C60A07F00635837 /* GLManager */,
 				331F3DF12C606C8100635837 /* glad.c */,
 				331F3DE72C6068F500635837 /* TriangleAndRectWithColorChange.cpp */,
-				331F3DFF2C6AF71300635837 /* texture.cpp */,
+				33FD15AC2CE58C4E00E91597 /* main.cpp */,
 			);
 			path = LearnOpenGL;
 			sourceTree = "<group>";
@@ -99,6 +103,15 @@
 				331F3DF52C60A10B00635837 /* GLAgent.hpp */,
 			);
 			path = GLManager;
+			sourceTree = "<group>";
+		};
+		33FD15AF2CE590C300E91597 /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				33FD15B02CE590D900E91597 /* Application.cpp */,
+				33FD15B12CE590D900E91597 /* Application.hpp */,
+			);
+			path = Application;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -159,10 +172,11 @@
 			files = (
 				331F3DE82C6068F500635837 /* TriangleAndRectWithColorChange.cpp in Sources */,
 				3365ED412C66E369005A6309 /* GLVAO.cpp in Sources */,
+				33FD15AE2CE58C4E00E91597 /* main.cpp in Sources */,
 				3365ED402C66E369005A6309 /* GLProgram.cpp in Sources */,
-				331F3E012C6AF71300635837 /* texture.cpp in Sources */,
 				331F3DF22C606C8100635837 /* glad.c in Sources */,
 				331F3DF62C60A10B00635837 /* GLShader.cpp in Sources */,
+				33FD15B22CE590D900E91597 /* Application.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -289,6 +303,7 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				HEADER_SEARCH_PATHS = (
+					"$(SRCROOT)/LearnOpenGL",
 					"$(SRCROOT)/third_party/glfw-3.4/include",
 					"$(SRCROOT)/third_party/glad/include",
 				);
@@ -306,6 +321,7 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				HEADER_SEARCH_PATHS = (
+					"$(SRCROOT)/LearnOpenGL",
 					"$(SRCROOT)/third_party/glfw-3.4/include",
 					"$(SRCROOT)/third_party/glad/include",
 				);
