@@ -10,7 +10,7 @@
 #include "glad/glad.h"
 #include "Application/Application.hpp"
 
-int main()
+int main(int argc, char* argv[])
 {
     // glfw 初始化
     if(!APP->initialize())
@@ -23,10 +23,12 @@ int main()
         std::cout << "Failed to initialize GLAD" << std::endl;
         return -1;
     }
+    glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
     
     // 执行窗体循环
     while(true)
     {
+        glClear(GL_COLOR_BUFFER_BIT);
         if(!APP->update())
         {
             return 0;

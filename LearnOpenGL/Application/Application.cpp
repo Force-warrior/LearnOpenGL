@@ -7,10 +7,14 @@
 
 #include "Application.hpp"
 
+#include "OpenGL/gl.h"
 
 Application::~Application()
 {
-    
+    if(mainWindow_)
+    {
+        glfwDestroyWindow(mainWindow_);
+    }
 }
 
 Application* Application::getInstance()
@@ -66,6 +70,7 @@ void Application::FreamBuffer_Resize_Event(GLFWwindow* window, int width, int he
     {
         Application::getInstance()->cb_FrameBufferResize_(width, height);
     }
+    glViewport(0, 0, width, height);
 }
 
 void Application::Windows_Close_Event(GLFWwindow* window)

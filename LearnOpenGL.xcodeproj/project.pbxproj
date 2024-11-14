@@ -15,6 +15,7 @@
 		3365ED412C66E369005A6309 /* GLVAO.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3365ED3F2C66E369005A6309 /* GLVAO.cpp */; };
 		33FD15AE2CE58C4E00E91597 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 33FD15AC2CE58C4E00E91597 /* main.cpp */; };
 		33FD15B22CE590D900E91597 /* Application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 33FD15B02CE590D900E91597 /* Application.cpp */; };
+		33FD15B42CE5C8CA00E91597 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3365ED3C2C66E300005A6309 /* OpenGL.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -49,6 +50,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				33FD15B42CE5C8CA00E91597 /* OpenGL.framework in Frameworks */,
 				331F3DF02C606C5900635837 /* libglfw.3.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -302,6 +304,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
+				GCC_PREPROCESSOR_DEFINITIONS = GL_SILENCE_DEPRECATION;
 				HEADER_SEARCH_PATHS = (
 					"$(SRCROOT)/LearnOpenGL",
 					"$(SRCROOT)/third_party/glfw-3.4/include",
@@ -320,6 +323,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
+				GCC_PREPROCESSOR_DEFINITIONS = GL_SILENCE_DEPRECATION;
 				HEADER_SEARCH_PATHS = (
 					"$(SRCROOT)/LearnOpenGL",
 					"$(SRCROOT)/third_party/glfw-3.4/include",
