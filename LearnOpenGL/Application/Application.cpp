@@ -35,7 +35,7 @@ bool Application::initialize()
 #ifdef __APPLE__
     glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
 #endif
-    mainWindow_ = glfwCreateWindow(600, 800, "MainWindow", NULL, NULL);
+    mainWindow_ = glfwCreateWindow(800, 600, "MainWindow", NULL, NULL);
     if(mainWindow_ == nullptr)
     {
         return false;
@@ -52,6 +52,7 @@ bool Application::update()
 {
     if(glfwWindowShouldClose(mainWindow_))
     {
+        glfwDestroyWindow(mainWindow_);
         return false;
     }
     glfwSwapBuffers(mainWindow_);
@@ -75,7 +76,6 @@ void Application::FreamBuffer_Resize_Event(GLFWwindow* window, int width, int he
 
 void Application::Windows_Close_Event(GLFWwindow* window)
 {
-    glfwDestroyWindow(window);
     glfwSetWindowShouldClose(window, true);
 }
 
