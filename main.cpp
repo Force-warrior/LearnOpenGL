@@ -7,78 +7,20 @@
 
 #include <iostream>
 
-#include "glad/glad.h"
+#include "GLManager/shader.hpp"
+#include "GLManager/core.h"
 #include "Application/Application.hpp"
+
 
 GLuint vao = 0, program = 0;
 
-void prepareShader()
-{
-    const char * vertexShaderSource =
-        "#version 330 core\n"
-        "layout (location=0) in vec3 aPos;\n"
-        "layout (location=1) in vec3 aColor;\n"
-        "out vec3 color;\n"
-        "void main()\n"
-        "{\n"
-        "   gl_Position = vec4(aPos, 1.0f);\n"
-        "   color = aColor;\n"
-        "}\0";
-    
-    const char * fragmentShaderSource =
-        "#version 330 core\n"
-        "out vec4 fragColor;\n"
-        "in vec3 color;\n"
-        "void main()\n"
-        "{\n"
-        "   fragColor = vec4(color, 1.0f);\n"
-        "}\0";
-    
-    
-    GLuint vertesShader = glCreateShader(GL_VERTEX_SHADER);
-    glShaderSource(vertesShader, 1, &vertexShaderSource, NULL);
-    glCompileShader(vertesShader);
-    GLint success = 0;
-    GLchar info[1024];
-    glGetShaderiv(vertesShader, GL_COMPILE_STATUS, &success);
-    if(!success)
-    {
-        glGetShaderInfoLog(vertesShader, 1024, NULL, info);
-        std::cout << "VERTEX SHADER COMPILE ERROR: \n" << info << std::endl;
-    }
-    
-    GLuint fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
-    glShaderSource(fragmentShader, 1, &fragmentShaderSource, NULL);
-    glCompileShader(fragmentShader);
-    glGetShaderiv(fragmentShader, GL_COMPILE_STATUS, &success);
-    if(!success)
-    {
-        glGetShaderInfoLog(fragmentShader, 1024, NULL, info);
-        std::cout << "FRAGMENT SHADER COMPILE ERROR: \n" << info << std::endl;
-    }
-    
-    program = glCreateProgram();
-    glAttachShader(program, vertesShader);
-    glAttachShader(program, fragmentShader);
-    glLinkProgram(program);
-    glGetProgramiv(program, GL_LINK_STATUS, &success);
-    if(!success)
-    {
-        glGetProgramInfoLog(program, 1024, NULL, info);
-        std::cout << "PROGRAM LINKED ERROR: \n" << info << std::endl;
-    }
-    
-    glDeleteShader(vertesShader);
-    glDeleteShader(fragmentShader);
-}
 
 void pareVertex()
 {
     float vertex[] = {
         -0.5f, -0.5f, 0.0f, 1.0f, 0.0f, 0.0f,
-        0.5f, -0.5f, 0.0f, 0.0f, 1.0f, 0.0f,
-        0.0f, 0.5f, 0.0f, 0.0f, 0.0f, 1.0f,
-        0.0f, 0.5f, 0.5f, 0.2f, 0.0f, 1.0f,
+        0.0f, 0.5f, 0.0f, 0.0f, 1.0f, 0.0f,
+        0.0f, 0.5f, 0.5f, 0.0f, 0.0f, 1.0f,
     };
     
     
@@ -123,23 +65,22 @@ int main(int argc, char* argv[])
         std::cout << "Failed to initialize GLAD" << std::endl;
         return -1;
     }
-    
-    prepareShader();
+    Shader shader("","");
     
     pareVertex();
     glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
-    
-    //prepareVAOForGLTriangles();
 
     // 执行窗体循环
     while(APP->update())
     {
         glClear(GL_COLOR_BUFFER_BIT);
-        glUseProgram(program);
+        shader.begin();
+        shader.setFloat("time", glfwGetTime());
         glBindVertexArray(vao);
         
-        glDrawElements(GL_LINE_STRIP, 4, GL_UNSIGNED_INT, 0);
+        glDrawElements(GL_TRIANGLES, 4, GL_UNSIGNED_INT, 0);
         glBindVertexArray(0);
+        shader.end();
     }
     
     APP->destroy();
